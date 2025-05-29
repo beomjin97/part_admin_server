@@ -1,5 +1,5 @@
 import { Part } from "src/part/part.entity";
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Category {
@@ -14,6 +14,6 @@ export class Category {
     })
     small_category: string;
 
-    @OneToOne(() => Part, (part) => part.category)
+    @OneToMany(() => Part, (part) => part.category)
     part: Part
 }

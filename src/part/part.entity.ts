@@ -3,7 +3,7 @@ import { Manufacturer } from 'src/manufacturer/manufacturer.entity';
 import { History } from 'src/history/histroy.entity';
 import { Location } from 'src/location/location.entity';
 
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany, ManyToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, ManyToMany } from 'typeorm';
 
 @Entity()
 export class Part {
@@ -28,10 +28,10 @@ export class Part {
   })
   note: string;
 
-  @OneToOne(() => Category, (category) => category.part)
+  @ManyToOne(() => Category, (category) => category.part)
   category: Category;
 
-  @OneToOne(() => Manufacturer, (manufacturer) => manufacturer.part)
+  @ManyToOne(() => Manufacturer, (manufacturer) => manufacturer.part)
   manufacturer: Manufacturer;
 
   @OneToMany(() => History, (history) => history.part)
