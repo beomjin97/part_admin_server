@@ -19,7 +19,7 @@ import { Manufacturer } from './manufacturer/manufacturer.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mariadb',
-      host: 'localhost',
+      host: 'db',
       port: 3306,
       username: 'root',
       password: 'root',
