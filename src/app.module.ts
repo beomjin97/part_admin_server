@@ -8,6 +8,12 @@ import { HistoryModule } from './history/history.module';
 import { ManufacturerModule } from './manufacturer/manufacturer.module';
 import { CategoryModule } from './category/category.module';
 import { LocationModule } from './location/location.module';
+import { Part } from './part/part.entity';
+import { Account } from './account/account.entity';
+import { Category } from './category/category.entity';
+import { History } from './history/histroy.entity';
+import { Location } from './location/location.entity';
+import { Manufacturer } from './manufacturer/manufacturer.entity';
 
 @Module({
   imports: [
@@ -18,9 +24,8 @@ import { LocationModule } from './location/location.module';
       username: 'root',
       password: 'root',
       database: 'test_db',
-      entities: [],
+      entities: [Account, Category, History, Location, Manufacturer, Part],
       synchronize: true,
-      autoLoadEntities: true,
     }),
     PartModule,
     AccountModule,
