@@ -13,7 +13,7 @@ export class Part {
   @Column({
     nullable: true,
   })
-  part_number: string;
+  part_number?: string;
 
   @Column()
   stock_count: number;
@@ -21,22 +21,22 @@ export class Part {
   @Column({
     nullable: true,
   })
-  compatible_equipment: string;
+  compatible_equipment?: string;
 
   @Column({
     nullable: true,
   })
-  note: string;
+  note?: string;
 
-  @ManyToOne(() => Category, (category) => category.part)
+  @ManyToOne(() => Category, (category) => category.parts)
   category: Category;
 
-  @ManyToOne(() => Manufacturer, (manufacturer) => manufacturer.part)
+  @ManyToOne(() => Manufacturer, (manufacturer) => manufacturer.parts)
   manufacturer: Manufacturer;
 
   @OneToMany(() => History, (history) => history.part)
   histories: History[]
 
-  @ManyToMany(() => Location, (location) => location.part)
+  @ManyToMany(() => Location, (location) => location.parts)
   locations: Location[]
 }

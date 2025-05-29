@@ -12,8 +12,8 @@ export class Category {
     @Column({
         nullable: true,
     })
-    small_category: string;
+    small_category?: string;
 
     @OneToMany(() => Part, (part) => part.category)
-    part: Part
+    parts: Part[]
 }
