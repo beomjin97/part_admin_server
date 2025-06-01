@@ -8,7 +8,7 @@ export class History {
     id: number;
 
     @Column()
-    import: boolean;
+    is_import: boolean;
 
     @Column()
     date: Date;
