@@ -7,12 +7,12 @@ export class Location {
     id: number;
 
     @Column()
-    large_number: string;
+    large_location: string;
 
     @Column({
         nullable: true,
     })
-    small_number?: string;
+    small_location?: string;
 
     @ManyToMany(() => Part, (part) => part.locations)
     parts: Part[];
