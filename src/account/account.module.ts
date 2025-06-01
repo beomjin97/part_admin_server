@@ -15,6 +15,7 @@ import { Account } from './account.entity';
     TypeOrmModule.forFeature([Account])
   ],
   controllers: [AccountController],
-  providers: [AccountService, JwtStrategy]
+  providers: [AccountService, JwtStrategy],
+  exports: [AccountService]
 })
 export class AccountModule {}
