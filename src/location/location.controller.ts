@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
 import { LocationService } from './location.service';
 
 @Controller('location')
@@ -15,15 +15,15 @@ export class LocationController {
     @Post()
     async postLocation(
         @Body() body: {
-            largeLocation: string, 
-            smallLocation?:string
+            large_location: string, 
+            small_location?:string
         },
     ) {
-        await this.locationService.createOne(body.largeLocation, body.smallLocation)
+        await this.locationService.createOne(body.large_location, body.small_location)
     }
 
-    @Delete('/:ids')
-    async deleteLocation(@Param('ids')ids: string) {
+    @Delete()
+    async deleteLocation(@Query('ids')ids: string) {
         const idArray = ids
             .split(',')
             .map(id => parseInt(id.trim(), 10))
