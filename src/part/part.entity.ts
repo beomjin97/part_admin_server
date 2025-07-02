@@ -16,6 +16,9 @@ export class Part {
   part_number?: string;
 
   @Column()
+  part_name: string;
+
+  @Column()
   stock_count: number;
 
   @Column({
