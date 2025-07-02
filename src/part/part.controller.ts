@@ -1,4 +1,14 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { PartService } from './part.service';
 
 @Controller('part')
-export class PartController {}
+export class PartController {
+    constructor(
+        private readonly partService: PartService
+    ) {}
+
+    @Post()
+    async postPart(@Body() body: {part_name: string, stock_count: number}) {
+        return await this.partService.createOne(body.part_name, body.stock_count);
+    }
+}

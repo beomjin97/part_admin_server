@@ -17,4 +17,10 @@ export class PartService {
             }
         })
     }
+
+    createOne(part_name: string, stock_count: number): Promise<Part> {
+        const part = this.partRepository.create({part_name, stock_count});
+        
+        return this.partRepository.save(part);
+    }
 }
