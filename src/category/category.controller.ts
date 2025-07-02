@@ -36,15 +36,14 @@ export class CategoryController {
             body.small_category
     )}
 
-    @Delete(':id')
+    @Delete()
     @HttpCode(204)
-    async deleteCategory(@Param('id') id: number):Promise<void> {
-        const category = await this.categoryService.findOne(id);
-        
-        if (category == null) {
-            throw new NotFoundException('No category exists with that ID.')
-        }
+    async deleteCategory(@Query('ids') ids: string) {
+        const idArray = ids
+            .split(',')
+            .map(id => parseInt(id.trim(), 10))
+            .filter(id => !isNaN(id))
 
-        await this.categoryService.deleteOne(id);
+        return await this.categoryService.deleteOne(idArray);
     }
 }
