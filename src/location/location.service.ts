@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Location } from './location.entity';
+import { Location } from './entities/location.entity';
 import { DeleteResult, Repository } from 'typeorm';
+import { CreateLocationDto } from './dto/create-location.dto';
 
 @Injectable()
 export class LocationService {
@@ -10,11 +11,8 @@ export class LocationService {
         private readonly locationRepository: Repository<Location> 
     ) {}
 
-    createOne(large_location: string, small_location?: string):Promise<Location> {
-        const location = this.locationRepository.create({
-            large_location,
-            small_location
-        })
+    createOne(createLocationDto: CreateLocationDto):Promise<Location> {
+        const location = this.locationRepository.create(createLocationDto)
         return this.locationRepository.save(location)
     }
 

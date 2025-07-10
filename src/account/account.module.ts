@@ -4,7 +4,7 @@ import { AccountService } from './account.service';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Account } from './account.entity';
+import { Account } from './entities/account.entity';
 
 @Module({
   imports: [

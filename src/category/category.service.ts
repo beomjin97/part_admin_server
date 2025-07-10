@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Category } from './category.entity';
+import { Category } from './entities/category.entity';
 import { DeleteResult, Repository } from 'typeorm';
+import { CreateCategoryDto } from './dto/create-category.dto';
 
 @Injectable()
 export class CategoryService {
@@ -10,11 +11,8 @@ export class CategoryService {
         private categoryRepository:Repository<Category>
     ) {}
 
-    createOne(large_category: string, small_category?:string):Promise<Category> {
-        const newCategory = this.categoryRepository.create({
-            large_category, 
-            small_category
-        });
+    createOne(createCategoryDto: CreateCategoryDto):Promise<Category> {
+        const newCategory = this.categoryRepository.create(createCategoryDto);
         
         return this.categoryRepository.save(newCategory)
     }

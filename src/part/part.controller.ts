@@ -7,6 +7,7 @@ export class PartController {
         private readonly partService: PartService
     ) {}
 
+    // TODO
     @Post()
     async postPart(@Body() body: {part_name: string, stock_count: number}) {
         return await this.partService.createOne(body.part_name, body.stock_count);

@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Manufacturer } from './manufacturer.entity';
+import { Manufacturer } from './entities/manufacturer.entity';
 import { DeleteResult, Repository } from 'typeorm';
+import { CreateManufacturerDto } from './dto/crerate-manufacturer.dto';
 
 @Injectable()
 export class ManufacturerService {
@@ -10,8 +11,8 @@ export class ManufacturerService {
         private readonly manufacturerRepository: Repository<Manufacturer>
     ) {}
 
-    createOne(name: string):Promise<Manufacturer> {
-        const manufacturer = this.manufacturerRepository.create({name});
+    createOne(createManufacturerDto: CreateManufacturerDto):Promise<Manufacturer> {
+        const manufacturer = this.manufacturerRepository.create(createManufacturerDto);
         return this.manufacturerRepository.save(manufacturer)
     }
 

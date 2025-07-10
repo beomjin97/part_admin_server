@@ -8,18 +8,18 @@ import { HistoryModule } from './history/history.module';
 import { ManufacturerModule } from './manufacturer/manufacturer.module';
 import { CategoryModule } from './category/category.module';
 import { LocationModule } from './location/location.module';
-import { Part } from './part/part.entity';
-import { Account } from './account/account.entity';
-import { Category } from './category/category.entity';
-import { History } from './history/histroy.entity';
-import { Location } from './location/location.entity';
-import { Manufacturer } from './manufacturer/manufacturer.entity';
+import { Part } from './part/entities/part.entity';
+import { Account } from './account/entities/account.entity';
+import { Category } from './category/entities/category.entity';
+import { History } from './history/entities/histroy.entity';
+import { Location } from './location/entities/location.entity';
+import { Manufacturer } from './manufacturer/entities/manufacturer.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mariadb',
-      host: 'db',
+      host: 'localhost',
       port: 3306,
       username: 'root',
       password: 'root',

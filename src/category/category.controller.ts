@@ -1,6 +1,8 @@
-import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
 import { CategoryService } from './category.service';
-import { Category } from './category.entity';
+import { Category } from './entities/category.entity';
+import { CreateCategoryDto } from './dto/create-category.dto';
+import { ParseIdArrayPipe } from 'src/common/pipes/parse-id-array.pipe';
 
 @Controller('category')
 export class CategoryController {
@@ -15,7 +17,7 @@ export class CategoryController {
 
     @Get(':id')
     async getCategory(
-        @Param('id') id: number
+        @Param('id', ParseIntPipe) id: number
     ): Promise<Category> {
         const category = await this.categoryService.findOne(id);
         
@@ -27,23 +29,14 @@ export class CategoryController {
     }
 
     @Post()
-    async createCategory(@Body() body: {
-        large_category: string, 
-        small_category: string 
-    }) {
-        return await this.categoryService.createOne(
-            body.large_category, 
-            body.small_category
-    )}
+    @HttpCode(204)
+    async createCategory(createCategoryDto: CreateCategoryDto) {
+        await this.categoryService.createOne(createCategoryDto)
+
+    }
 
     @Delete()
-    @HttpCode(204)
-    async deleteCategory(@Query('ids') ids: string) {
-        const idArray = ids
-            .split(',')
-            .map(id => parseInt(id.trim(), 10))
-            .filter(id => !isNaN(id))
-
-        return await this.categoryService.deleteOne(idArray);
+    async deleteCategory(@Query('ids', ParseIdArrayPipe) ids: number[]) {
+        return await this.categoryService.deleteOne(ids);
     }
 }

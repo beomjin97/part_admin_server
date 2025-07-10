@@ -1,7 +1,7 @@
-import { Category } from 'src/category/category.entity';
-import { Manufacturer } from 'src/manufacturer/manufacturer.entity';
-import { History } from 'src/history/histroy.entity';
-import { Location } from 'src/location/location.entity';
+import { Category } from 'src/category/entities/category.entity';
+import { Manufacturer } from 'src/manufacturer/entities/manufacturer.entity';
+import { History } from 'src/history/entities/histroy.entity';
+import { Location } from 'src/location/entities/location.entity';
 
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, ManyToMany } from 'typeorm';
 

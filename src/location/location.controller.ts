@@ -1,5 +1,7 @@
 import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
 import { LocationService } from './location.service';
+import { ParseIdArrayPipe } from 'src/common/pipes/parse-id-array.pipe';
+import { CreateLocationDto } from './dto/create-location.dto';
 
 @Controller('location')
 export class LocationController {
@@ -13,22 +15,14 @@ export class LocationController {
     }
 
     @Post()
-    async postLocation(
-        @Body() body: {
-            large_location: string, 
-            small_location?:string
-        },
+    async createLocation(
+        @Body() createLocationDto: CreateLocationDto,
     ) {
-        await this.locationService.createOne(body.large_location, body.small_location)
+        await this.locationService.createOne(createLocationDto);
     }
 
     @Delete()
-    async deleteLocation(@Query('ids')ids: string) {
-        const idArray = ids
-            .split(',')
-            .map(id => parseInt(id.trim(), 10))
-            .filter((id) => !isNaN(id))
-        
-        return await this.locationService.delete(idArray);
+    async deleteLocation(@Query('ids', ParseIdArrayPipe)ids: number[]) {        
+        return await this.locationService.delete(ids);
     }
 }

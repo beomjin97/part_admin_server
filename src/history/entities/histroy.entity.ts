@@ -1,5 +1,5 @@
-import { Account } from "src/account/account.entity";
-import { Part } from "src/part/part.entity";
+import { Account } from "src/account/entities/account.entity";
+import { Part } from "src/part/entities/part.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()

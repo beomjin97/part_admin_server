@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { History } from './histroy.entity';
+import { History } from './entities/histroy.entity';
 import { Repository } from 'typeorm';
-import { Account } from 'src/account/account.entity';
-import { Part } from 'src/part/part.entity';
+import { Account } from 'src/account/entities/account.entity';
+import { Part } from 'src/part/entities/part.entity';
+import { createHistoryDto } from './dto/create-history.dto';
 
 @Injectable()
 export class HistoryService {
@@ -12,7 +13,9 @@ export class HistoryService {
         private readonly histroyRepository: Repository<History>
     ) {}
 
-    createOne (is_import: boolean, date: Date, count: number,part: Part, author: Account):Promise<History> {
+    createOne (createHistoryDto: createHistoryDto,part: Part, author: Account):Promise<History> {
+        const {is_import, date, count} = createHistoryDto;
+        
         const history = this.histroyRepository.create({
             is_import, 
             date, 

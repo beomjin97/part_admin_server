@@ -1,4 +1,4 @@
-import { Part } from "src/part/part.entity";
+import { Part } from "src/part/entities/part.entity";
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()

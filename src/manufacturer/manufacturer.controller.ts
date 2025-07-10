@@ -1,5 +1,7 @@
-import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Post, Query } from '@nestjs/common';
 import { ManufacturerService } from './manufacturer.service';
+import { CreateManufacturerDto } from './dto/crerate-manufacturer.dto';
+import { ParseIdArrayPipe } from 'src/common/pipes/parse-id-array.pipe';
 
 @Controller('manufacturer')
 export class ManufacturerController {
@@ -13,17 +15,13 @@ export class ManufacturerController {
     }
 
     @Post()
-    async postManufacturer(@Body() body: {name: string}) {
-        return await this.manufacturerService.createOne(body.name);
+    @HttpCode(204)
+    async createManufacturer(@Body() createManufacturerDto:CreateManufacturerDto) {
+        await this.manufacturerService.createOne(createManufacturerDto);
     }
 
     @Delete()
-    async deleteManufacturer(@Query('ids') ids: string) {
-        const idArray = ids
-            .split(',')
-            .map(id => parseInt(id.trim(), 10))
-            .filter(id => !isNaN(id));
-        
-        return await this.manufacturerService.delete(idArray);
+    async deleteManufacturer(@Query('ids', ParseIdArrayPipe) ids: number[]) {
+        return await this.manufacturerService.delete(ids);
     }
 }
