@@ -7,6 +7,7 @@ import { ManufacturerController } from './manufacturer.controller';
 @Module({
   imports: [TypeOrmModule.forFeature([Manufacturer])],
   providers: [ManufacturerService],
-  controllers: [ManufacturerController]
+  controllers: [ManufacturerController],
+  exports: [ManufacturerService]
 })
 export class ManufacturerModule {}

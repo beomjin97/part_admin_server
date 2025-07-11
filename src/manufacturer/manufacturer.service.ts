@@ -23,4 +23,10 @@ export class ManufacturerService {
     findAll(): Promise<Manufacturer[]> {
         return this.manufacturerRepository.find();
     }
+
+    findOne(id: number): Promise<Manufacturer | null> {
+        return this.manufacturerRepository.findOne({
+            where: {id}
+        })
+    }
 }

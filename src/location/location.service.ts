@@ -23,4 +23,10 @@ export class LocationService {
     findAll():Promise<Location[]> {
         return this.locationRepository.find()
     }
+
+    findOne(id: number): Promise<Location | null> {
+        return this.locationRepository.findOne({
+            where: { id }
+        })
+    }
 }

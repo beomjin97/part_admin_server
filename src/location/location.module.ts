@@ -7,6 +7,7 @@ import { LocationController } from './location.controller';
 @Module({
   imports: [TypeOrmModule.forFeature([Location])],
   providers: [LocationService],
-  controllers: [LocationController]
+  controllers: [LocationController],
+  exports: [LocationService]
 })
 export class LocationModule {}
