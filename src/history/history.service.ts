@@ -4,7 +4,7 @@ import { History } from './entities/histroy.entity';
 import { Repository } from 'typeorm';
 import { Account } from 'src/account/entities/account.entity';
 import { Part } from 'src/part/entities/part.entity';
-import { createHistoryDto } from './dto/create-history.dto';
+import { CreateHistoryDto } from './dto/create-history.dto';
 
 @Injectable()
 export class HistoryService {
@@ -13,7 +13,7 @@ export class HistoryService {
         private readonly histroyRepository: Repository<History>
     ) {}
 
-    createOne (createHistoryDto: createHistoryDto,part: Part, author: Account):Promise<History> {
+    createOne (createHistoryDto: CreateHistoryDto,part: Part, author: Account):Promise<History> {
         const {is_import, date, count} = createHistoryDto;
         
         const history = this.histroyRepository.create({

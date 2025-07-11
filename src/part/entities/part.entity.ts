@@ -18,9 +18,6 @@ export class Part {
   @Column()
   part_name: string;
 
-  @Column()
-  stock_count: number;
-
   @Column({
     nullable: true,
   })

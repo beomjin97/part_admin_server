@@ -1,6 +1,6 @@
 import { Body, Controller, NotFoundException, Post, UnauthorizedException } from '@nestjs/common';
 import { AccountService } from './account.service';
-import { SignInDto } from './dto/sign-indto';
+import { SignInDto } from './dto/sign-in.dto';
 
 @Controller('account')
 export class AccountController {

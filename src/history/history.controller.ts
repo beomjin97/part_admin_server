@@ -3,7 +3,7 @@ import { HistoryService } from './history.service';
 import { PartService } from 'src/part/part.service';
 import { AccountService } from 'src/account/account.service';
 import { JwtAuthGuard } from 'src/account/jwt-auth.guard';
-import { createHistoryDto } from './dto/create-history.dto';
+import { CreateHistoryDto } from './dto/create-history.dto';
 
 @Controller('history')
 export class HistoryController {
@@ -17,7 +17,7 @@ export class HistoryController {
     @UseGuards(JwtAuthGuard)
     @Post()
     async createHistory(
-        @Body() createHistoryDto: createHistoryDto, 
+        @Body() createHistoryDto: CreateHistoryDto, 
         @Request() req
     ) {
         const part = await this.partService.findOne(createHistoryDto.part_id);
